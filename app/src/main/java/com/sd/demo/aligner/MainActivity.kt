@@ -60,17 +60,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
 
-            _binding.btnTopLeft -> _aligner.position = Aligner.Position.TopStart
+            _binding.btnTopStart -> _aligner.position = Aligner.Position.TopStart
             _binding.btnTopCenter -> _aligner.position = Aligner.Position.TopCenter
-            _binding.btnTopRight -> _aligner.position = Aligner.Position.TopEnd
+            _binding.btnTopEnd -> _aligner.position = Aligner.Position.TopEnd
 
-            _binding.btnCenterLeft -> _aligner.position = Aligner.Position.CenterStart
+            _binding.btnCenterStart -> _aligner.position = Aligner.Position.CenterStart
             _binding.btnCenter -> _aligner.position = Aligner.Position.Center
-            _binding.btnCenterRight -> _aligner.position = Aligner.Position.CenterEnd
+            _binding.btnCenterEnd -> _aligner.position = Aligner.Position.CenterEnd
 
-            _binding.btnBottomLeft -> _aligner.position = Aligner.Position.BottomStart
+            _binding.btnBottomStart -> _aligner.position = Aligner.Position.BottomStart
             _binding.btnBottomCenter -> _aligner.position = Aligner.Position.BottomCenter
-            _binding.btnBottomRight -> _aligner.position = Aligner.Position.BottomEnd
+            _binding.btnBottomEnd -> _aligner.position = Aligner.Position.BottomEnd
         }
     }
 }
