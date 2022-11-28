@@ -20,7 +20,7 @@ interface Aligner {
     val sourceLayoutInfo: LayoutInfo
 
     /**
-     * 源容器的信息
+     * 源容器信息
      */
     val sourceContainerLayoutInfo: LayoutInfo
 
@@ -78,7 +78,7 @@ interface Aligner {
     }
 
     /**
-     * 位置大小信息
+     * 宽，高，大小等信息
      */
     interface LayoutInfo {
         /** 是否已经准备好 */
@@ -94,12 +94,15 @@ interface Aligner {
         val coordinate: IntArray
 
         companion object {
-            val coordinateUnspecified = intArrayOf(Int.MAX_VALUE, Int.MIN_VALUE)
+            /** 无效坐标 */
+            val CoordinateUnspecified = intArrayOf(Int.MAX_VALUE, Int.MIN_VALUE)
+
+            /** 无效信息 */
             val Unspecified = object : LayoutInfo {
                 override val isReady: Boolean get() = false
                 override val width: Int get() = 0
                 override val height: Int get() = 0
-                override val coordinate: IntArray get() = coordinateUnspecified
+                override val coordinate: IntArray get() = CoordinateUnspecified
             }
         }
     }

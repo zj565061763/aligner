@@ -55,10 +55,10 @@ open class FAligner : Aligner {
         if (!sourceContainer.isReady) return null
 
         val coordinateTarget = target.coordinate
-        if (coordinateTarget === LayoutInfo.coordinateUnspecified) return null
+        if (coordinateTarget === LayoutInfo.CoordinateUnspecified) return null
 
         val coordinateSourceContainer = sourceContainer.coordinate
-        if (coordinateSourceContainer === LayoutInfo.coordinateUnspecified) return null
+        if (coordinateSourceContainer === LayoutInfo.CoordinateUnspecified) return null
 
         _coordinateTarget[0] = coordinateTarget[0]
         _coordinateTarget[1] = coordinateTarget[1]

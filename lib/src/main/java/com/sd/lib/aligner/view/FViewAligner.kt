@@ -82,7 +82,7 @@ private class ViewLayoutInfo(view: View) : LayoutInfo {
 
     override val coordinate: IntArray
         get() {
-            val view = view ?: return LayoutInfo.coordinateUnspecified
+            val view = view ?: return LayoutInfo.CoordinateUnspecified
             view.getLocationOnScreen(_coordinateArray)
             return _coordinateArray
         }
