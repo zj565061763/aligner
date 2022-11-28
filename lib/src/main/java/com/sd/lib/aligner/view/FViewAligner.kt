@@ -15,9 +15,9 @@ class FViewAligner : FAligner(), ViewAligner {
         }
         set(value) {
             if (value != null) {
-                setTargetLayoutInfo(ViewLayoutInfo(value))
+                setTargetLayoutInfo(InternalViewLayoutInfo(value))
             } else {
-                if (targetLayoutInfo is ViewLayoutInfo) {
+                if (targetLayoutInfo is InternalViewLayoutInfo) {
                     setTargetLayoutInfo(LayoutInfo.Unspecified)
                 }
             }
@@ -31,9 +31,9 @@ class FViewAligner : FAligner(), ViewAligner {
         }
         set(value) {
             if (value != null) {
-                setSourceLayoutInfo(ViewLayoutInfo(value))
+                setSourceLayoutInfo(InternalViewLayoutInfo(value))
             } else {
-                if (sourceLayoutInfo is ViewLayoutInfo) {
+                if (sourceLayoutInfo is InternalViewLayoutInfo) {
                     setSourceLayoutInfo(LayoutInfo.Unspecified)
                 }
             }
@@ -43,29 +43,31 @@ class FViewAligner : FAligner(), ViewAligner {
         get() {
             val parentView = source.parentView()
             if (parentView == null) {
-                if (super.sourceContainerLayoutInfo is ViewLayoutInfo) {
+                if (super.sourceContainerLayoutInfo is InternalViewLayoutInfo) {
                     setSourceContainerLayoutInfo(LayoutInfo.Unspecified)
                 }
             } else {
                 val superInfo = super.sourceContainerLayoutInfo
-                if (superInfo is ViewLayoutInfo) {
+                if (superInfo is InternalViewLayoutInfo) {
                     if (superInfo.view === parentView) {
                         // parent未发生变化
                         return superInfo
                     } else {
                         // parent变化了
-                        setSourceContainerLayoutInfo(ViewLayoutInfo(parentView))
+                        setSourceContainerLayoutInfo(InternalViewLayoutInfo(parentView))
                     }
                 } else if (superInfo === LayoutInfo.Unspecified) {
-                    setSourceContainerLayoutInfo(ViewLayoutInfo(parentView))
+                    setSourceContainerLayoutInfo(InternalViewLayoutInfo(parentView))
                 }
             }
             return super.sourceContainerLayoutInfo
         }
+
+    private class InternalViewLayoutInfo(view: View) : ViewLayoutInfo(view)
 }
 
 
-private class ViewLayoutInfo(view: View) : LayoutInfo {
+open class ViewLayoutInfo(view: View) : LayoutInfo {
     private var _viewRef = WeakReference(view)
     private val _coordinateArray = IntArray(2)
 
