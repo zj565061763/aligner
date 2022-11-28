@@ -55,6 +55,10 @@ open class FAligner : Aligner {
         val source = sourceLayoutInfo
         val sourceContainer = sourceContainerLayoutInfo
 
+        if (_callback?.canUpdate() == false) {
+            return null
+        }
+
         // check isReady
         if (!target.isReady) return null
         if (!source.isReady) return null

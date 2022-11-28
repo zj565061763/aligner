@@ -117,6 +117,15 @@ interface Aligner {
 
     interface Callback {
         /**
+         * 在[Aligner.update]之前触发，可以做一些初始化操作。
+         *
+         * @return true-继续更新，false-跳过本次更新
+         */
+        fun canUpdate(): Boolean {
+            return true
+        }
+
+        /**
          * 结果回调
          */
         fun onResult(result: Result?)
