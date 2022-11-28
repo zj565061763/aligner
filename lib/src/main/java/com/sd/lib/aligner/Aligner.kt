@@ -111,7 +111,7 @@ interface Aligner {
         /** 源相对于源容器的x值 */
         val x: Int,
 
-        /** 源现对于源容器的y值 */
+        /** 源相对于源容器的y值 */
         val y: Int,
     )
 
