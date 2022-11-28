@@ -62,7 +62,7 @@ open class FAligner : Aligner {
 
         when (position) {
             Position.TopStart -> {
-                _x = getXAlignLeft()
+                _x = getXAlignStart()
                 _y = getYAlignTop()
             }
             Position.TopCenter -> {
@@ -70,12 +70,12 @@ open class FAligner : Aligner {
                 _y = getYAlignTop()
             }
             Position.TopEnd -> {
-                _x = getXAlignRight(source, target)
+                _x = getXAlignEnd(source, target)
                 _y = getYAlignTop()
             }
 
             Position.CenterStart -> {
-                _x = getXAlignLeft()
+                _x = getXAlignStart()
                 _y = getYAlignCenter(source, target)
             }
             Position.Center -> {
@@ -83,12 +83,12 @@ open class FAligner : Aligner {
                 _y = getYAlignCenter(source, target)
             }
             Position.CenterEnd -> {
-                _x = getXAlignRight(source, target)
+                _x = getXAlignEnd(source, target)
                 _y = getYAlignCenter(source, target)
             }
 
             Position.BottomStart -> {
-                _x = getXAlignLeft()
+                _x = getXAlignStart()
                 _y = getYAlignBottom(source, target)
             }
             Position.BottomCenter -> {
@@ -96,7 +96,7 @@ open class FAligner : Aligner {
                 _y = getYAlignBottom(source, target)
             }
             Position.BottomEnd -> {
-                _x = getXAlignRight(source, target)
+                _x = getXAlignEnd(source, target)
                 _y = getYAlignBottom(source, target)
             }
         }
@@ -105,16 +105,16 @@ open class FAligner : Aligner {
         return true
     }
 
-    private fun getXAlignLeft(): Int {
+    private fun getXAlignStart(): Int {
         return _coordinateTarget[0] - _coordinateSourceParent[0]
     }
 
-    private fun getXAlignRight(source: LayoutInfo, target: LayoutInfo): Int {
-        return getXAlignLeft() + (target.width - source.width)
+    private fun getXAlignEnd(source: LayoutInfo, target: LayoutInfo): Int {
+        return getXAlignStart() + (target.width - source.width)
     }
 
     private fun getXAlignCenter(source: LayoutInfo, target: LayoutInfo): Int {
-        return getXAlignLeft() + (target.width - source.width) / 2
+        return getXAlignStart() + (target.width - source.width) / 2
     }
 
     private fun getYAlignTop(): Int {
