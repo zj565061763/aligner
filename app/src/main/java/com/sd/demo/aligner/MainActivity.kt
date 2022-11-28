@@ -64,9 +64,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             _binding.btnTopCenter -> _aligner.position = Aligner.Position.TopCenter
             _binding.btnTopRight -> _aligner.position = Aligner.Position.TopRight
 
-            _binding.btnLeftCenter -> _aligner.position = Aligner.Position.LeftCenter
+            _binding.btnCenterLeft -> _aligner.position = Aligner.Position.CenterLeft
             _binding.btnCenter -> _aligner.position = Aligner.Position.Center
-            _binding.btnRightCenter -> _aligner.position = Aligner.Position.RightCenter
+            _binding.btnCenterRight -> _aligner.position = Aligner.Position.CenterRight
 
             _binding.btnBottomLeft -> _aligner.position = Aligner.Position.BottomLeft
             _binding.btnBottomCenter -> _aligner.position = Aligner.Position.BottomCenter

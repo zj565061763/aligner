@@ -59,13 +59,13 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_left_center"
+                    android:id="@+id/btn_center_left"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="onClick"
-                    android:text="LeftCenter"
+                    android:text="CenterLeft"
                     android:textAllCaps="false" />
 
                 <Button
@@ -79,13 +79,13 @@
                     android:textAllCaps="false" />
 
                 <Button
-                    android:id="@+id/btn_right_center"
+                    android:id="@+id/btn_center_right"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="onClick"
-                    android:text="RightCenter"
+                    android:text="CenterRight"
                     android:textAllCaps="false" />
             </LinearLayout>
 

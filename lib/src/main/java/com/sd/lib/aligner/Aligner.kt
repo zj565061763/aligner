@@ -38,11 +38,11 @@ interface Aligner {
         TopRight,
 
         /** 左边中间对齐 */
-        LeftCenter,
+        CenterLeft,
         /** 中间对齐 */
         Center,
         /** 右边中间对齐 */
-        RightCenter,
+        CenterRight,
 
         /** 左下角对齐 */
         BottomLeft,

@@ -65,9 +65,9 @@ open class FAligner : Aligner {
             Position.TopCenter -> layoutTopCenter(source, target)
             Position.TopRight -> layoutTopRight(source, target)
 
-            Position.LeftCenter -> layoutLeftCenter(source, target)
+            Position.CenterLeft -> layoutLeftCenter(source, target)
             Position.Center -> layoutCenter(source, target)
-            Position.RightCenter -> layoutRightCenter(source, target)
+            Position.CenterRight -> layoutRightCenter(source, target)
 
             Position.BottomLeft -> layoutBottomLeft(source, target)
             Position.BottomCenter -> layoutBottomCenter(source, target)
