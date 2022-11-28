@@ -28,15 +28,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             // 设置回调对象
             this.setCallback(object : Aligner.Callback {
                 override fun onResult(result: Aligner.Result?) {
-                    if (result == null) return
-
-                    val x = result.x
-                    val y = result.y
-
-                    logMsg { "(${x}, ${y})" }
-
-                    val view = _binding.viewSource
-                    view.layout(x, y, x + view.measuredWidth, y + view.measuredHeight)
+                    if (result != null) {
+                        handleResult(result)
+                    }
                 }
             })
         }
@@ -45,6 +39,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val _onPreDrawListener = ViewTreeObserver.OnPreDrawListener {
         _aligner.update()
         true
+    }
+
+    private fun handleResult(result: Aligner.Result) {
+        val x = result.x
+        val y = result.y
+
+        logMsg { "(${x}, ${y})" }
+
+        val view = _binding.viewSource
+        view.layout(x, y, x + view.measuredWidth, y + view.measuredHeight)
     }
 
     override fun onClick(v: View) {
