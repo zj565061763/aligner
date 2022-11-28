@@ -103,7 +103,7 @@ interface Aligner {
         }
 
         /**
-         * 根据指定[Position]追踪到[target]后触发。
+         * 根据指定[Position]对齐[target]后触发。
          *
          * @param x      [source]相对于父容器的[x]值，如果为null，表示该方向不需要处理
          * @param y      [source]相对于父容器的[y]值，如果为null，表示该方向不需要处理
