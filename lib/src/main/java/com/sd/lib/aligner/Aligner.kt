@@ -30,26 +30,26 @@ interface Aligner {
     fun update(): Boolean
 
     enum class Position {
-        /** 左上角对齐 */
-        TopLeft,
+        /** 顶部开始对齐 */
+        TopStart,
         /** 顶部中间对齐 */
         TopCenter,
-        /** 右上角对齐 */
-        TopRight,
+        /** 顶部结束对齐 */
+        TopEnd,
 
-        /** 左边中间对齐 */
-        CenterLeft,
+        /** 中间开始对齐 */
+        CenterStart,
         /** 中间对齐 */
         Center,
-        /** 右边中间对齐 */
-        CenterRight,
+        /** 中间结束对齐 */
+        CenterEnd,
 
-        /** 左下角对齐 */
-        BottomLeft,
+        /** 底部开始对齐 */
+        BottomStart,
         /** 底部中间对齐 */
         BottomCenter,
-        /** 右下角对齐 */
-        BottomRight,
+        /** 底部结束对齐 */
+        BottomEnd,
     }
 
     /**

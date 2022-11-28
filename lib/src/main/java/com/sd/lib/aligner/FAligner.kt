@@ -12,7 +12,7 @@ open class FAligner : Aligner {
 
     override var callback: Callback? = null
 
-    override var position by Delegates.observable(Position.TopRight) { _, oldValue, newValue ->
+    override var position by Delegates.observable(Position.TopEnd) { _, oldValue, newValue ->
         if (oldValue != newValue) {
             update()
         }
@@ -61,71 +61,49 @@ open class FAligner : Aligner {
         _coordinateSourceParent[1] = coordinateSourceParent[1]
 
         when (position) {
-            Position.TopLeft -> layoutTopLeft(source, target)
-            Position.TopCenter -> layoutTopCenter(source, target)
-            Position.TopRight -> layoutTopRight(source, target)
+            Position.TopStart -> {
+                _x = getXAlignLeft()
+                _y = getYAlignTop()
+            }
+            Position.TopCenter -> {
+                _x = getXAlignCenter(source, target)
+                _y = getYAlignTop()
+            }
+            Position.TopEnd -> {
+                _x = getXAlignRight(source, target)
+                _y = getYAlignTop()
+            }
 
-            Position.CenterLeft -> layoutCenterLeft(source, target)
-            Position.Center -> layoutCenter(source, target)
-            Position.CenterRight -> layoutCenterRight(source, target)
+            Position.CenterStart -> {
+                _x = getXAlignLeft()
+                _y = getYAlignCenter(source, target)
+            }
+            Position.Center -> {
+                _x = getXAlignCenter(source, target)
+                _y = getYAlignCenter(source, target)
+            }
+            Position.CenterEnd -> {
+                _x = getXAlignRight(source, target)
+                _y = getYAlignCenter(source, target)
+            }
 
-            Position.BottomLeft -> layoutBottomLeft(source, target)
-            Position.BottomCenter -> layoutBottomCenter(source, target)
-            Position.BottomRight -> layoutBottomRight(source, target)
+            Position.BottomStart -> {
+                _x = getXAlignLeft()
+                _y = getYAlignBottom(source, target)
+            }
+            Position.BottomCenter -> {
+                _x = getXAlignCenter(source, target)
+                _y = getYAlignBottom(source, target)
+            }
+            Position.BottomEnd -> {
+                _x = getXAlignRight(source, target)
+                _y = getYAlignBottom(source, target)
+            }
         }
 
         callback.onUpdate(_x, _y, source, target)
         return true
     }
-
-    //---------- position start----------
-
-    private fun layoutTopLeft(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignLeft()
-        _y = getYAlignTop()
-    }
-
-    private fun layoutTopCenter(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignCenter(source, target)
-        _y = getYAlignTop()
-    }
-
-    private fun layoutTopRight(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignRight(source, target)
-        _y = getYAlignTop()
-    }
-
-    private fun layoutCenterLeft(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignLeft()
-        _y = getYAlignCenter(source, target)
-    }
-
-    private fun layoutCenter(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignCenter(source, target)
-        _y = getYAlignCenter(source, target)
-    }
-
-    private fun layoutCenterRight(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignRight(source, target)
-        _y = getYAlignCenter(source, target)
-    }
-
-    private fun layoutBottomLeft(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignLeft()
-        _y = getYAlignBottom(source, target)
-    }
-
-    private fun layoutBottomCenter(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignCenter(source, target)
-        _y = getYAlignBottom(source, target)
-    }
-
-    private fun layoutBottomRight(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignRight(source, target)
-        _y = getYAlignBottom(source, target)
-    }
-
-    //---------- position end----------
 
     private fun getXAlignLeft(): Int {
         return _coordinateTarget[0] - _coordinateSourceParent[0]
