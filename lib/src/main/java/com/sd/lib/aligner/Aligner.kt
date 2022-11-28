@@ -94,7 +94,7 @@ interface Aligner {
         }
 
         /**
-         * 根据[Position]计算对齐[target]后触发。
+         * 根据[Position]计算后触发。
          *
          * @param x      [source]相对于父容器的[x]值
          * @param y      [source]相对于父容器的[y]值
