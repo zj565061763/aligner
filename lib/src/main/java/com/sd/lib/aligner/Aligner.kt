@@ -24,7 +24,6 @@ interface Aligner {
      */
     var targetLayoutInfo: LayoutInfo?
 
-
     /**
      * 触发一次对齐，并返回是否更新成功
      */
