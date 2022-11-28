@@ -6,12 +6,12 @@ import com.sd.lib.aligner.Aligner.*
 
 interface ViewAligner : Aligner {
     /**
-     * 源view
+     * 源View
      */
     var source: View?
 
     /**
-     * 目标view
+     * 目标View
      */
     var target: View?
 

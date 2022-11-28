@@ -15,50 +15,41 @@ interface Aligner {
     var position: Position
 
     /**
-     * 源位置信息
+     * 源信息
      */
     var sourceLayoutInfo: SourceLayoutInfo?
 
     /**
-     * 目标位置信息
+     * 目标信息
      */
     var targetLayoutInfo: LayoutInfo?
 
     /**
-     * 触发一次对齐，并返回是否更新成功
+     * 触发一次对齐，并返回是否成功
      */
     fun update(): Boolean
 
     enum class Position {
-        /** 与target左上角对齐 */
+        /** 左上角对齐 */
         TopLeft,
-        /** 与target顶部中间对齐 */
+        /** 顶部中间对齐 */
         TopCenter,
-        /** 与target右上角对齐 */
+        /** 右上角对齐 */
         TopRight,
 
-        /** 与target左边中间对齐 */
+        /** 左边中间对齐 */
         LeftCenter,
         /** 中间对齐 */
         Center,
-        /** 与target右边中间对齐 */
+        /** 右边中间对齐 */
         RightCenter,
 
-        /** 与target左下角对齐 */
+        /** 左下角对齐 */
         BottomLeft,
-        /** 与target底部中间对齐 */
+        /** 底部中间对齐 */
         BottomCenter,
-        /** 与target右下角对齐 */
+        /** 右下角对齐 */
         BottomRight,
-
-        /** 与target左边对齐 */
-        Left,
-        /** 与target顶部对齐 */
-        Top,
-        /** 与target右边对齐 */
-        Right,
-        /** 与target底部对齐 */
-        Bottom
     }
 
     /**
@@ -92,7 +83,8 @@ interface Aligner {
 
     abstract class Callback {
         /**
-         * 在更新之前触发
+         * [Aligner.update]后触发，返回是否可以更新
+         *
          * @param source 源
          * @param target 目标
          * @return true-可以更新，false-不要更新
@@ -102,13 +94,13 @@ interface Aligner {
         }
 
         /**
-         * 根据指定[Position]对齐[target]后触发。
+         * 根据[Position]计算对齐[target]后触发。
          *
-         * @param x      [source]相对于父容器的[x]值，如果为null，表示该方向不需要处理
-         * @param y      [source]相对于父容器的[y]值，如果为null，表示该方向不需要处理
+         * @param x      [source]相对于父容器的[x]值
+         * @param y      [source]相对于父容器的[y]值
          * @param source 源
          * @param target 目标
          */
-        abstract fun onUpdate(x: Int?, y: Int?, source: SourceLayoutInfo, target: LayoutInfo)
+        abstract fun onUpdate(x: Int, y: Int, source: SourceLayoutInfo, target: LayoutInfo)
     }
 }

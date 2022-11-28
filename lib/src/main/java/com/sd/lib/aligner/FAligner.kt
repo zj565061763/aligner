@@ -7,8 +7,8 @@ open class FAligner : Aligner {
     private val _coordinateTarget = IntArray(2)
     private val _coordinateSourceParent = IntArray(2)
 
-    private var _x: Int? = 0
-    private var _y: Int? = 0
+    private var _x = 0
+    private var _y = 0
 
     override var callback: Callback? = null
 
@@ -72,11 +72,6 @@ open class FAligner : Aligner {
             Position.BottomLeft -> layoutBottomLeft(source, target)
             Position.BottomCenter -> layoutBottomCenter(source, target)
             Position.BottomRight -> layoutBottomRight(source, target)
-
-            Position.Left -> layoutLeft(source, target)
-            Position.Top -> layoutTop(source, target)
-            Position.Right -> layoutRight(source, target)
-            Position.Bottom -> layoutBottom(source, target)
         }
 
         callback.onUpdate(_x, _y, source, target)
@@ -127,26 +122,6 @@ open class FAligner : Aligner {
 
     private fun layoutBottomRight(source: LayoutInfo, target: LayoutInfo) {
         _x = getXAlignRight(source, target)
-        _y = getYAlignBottom(source, target)
-    }
-
-    private fun layoutLeft(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignLeft()
-        _y = null
-    }
-
-    private fun layoutTop(source: LayoutInfo, target: LayoutInfo) {
-        _x = null
-        _y = getYAlignTop()
-    }
-
-    private fun layoutRight(source: LayoutInfo, target: LayoutInfo) {
-        _x = getXAlignRight(source, target)
-        _y = null
-    }
-
-    private fun layoutBottom(source: LayoutInfo, target: LayoutInfo) {
-        _x = null
         _y = getYAlignBottom(source, target)
     }
 

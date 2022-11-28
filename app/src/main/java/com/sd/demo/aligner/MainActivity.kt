@@ -20,28 +20,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val _aligner by lazy {
         FViewAligner().apply {
-            // 设置源view
+            // 设置源View
             this.source = _binding.viewSource
 
-            // 设置目标view
+            // 设置目标View
             this.target = _binding.viewTarget
 
             // 设置回调对象
             this.callback = object : ViewAligner.ViewCallback() {
-                override fun onUpdate(x: Int?, y: Int?, source: Aligner.SourceLayoutInfo, target: Aligner.LayoutInfo) {
+                override fun onUpdate(x: Int, y: Int, source: Aligner.SourceLayoutInfo, target: Aligner.LayoutInfo) {
+                    logMsg { "($x, $y)" }
                     source as ViewAligner.ViewLayoutInfo
-
-                    val sourceView = source.view!!
-                    val left = x ?: sourceView.left
-                    val top = y ?: sourceView.top
-
-                    logMsg { "($left, $top)" }
-                    sourceView.layout(
-                        left,
-                        top,
-                        left + sourceView.measuredWidth,
-                        top + sourceView.measuredHeight
-                    )
+                    source.view!!.let { view ->
+                        view.layout(x, y, x + view.measuredWidth, y + view.measuredHeight)
+                    }
                 }
             }
         }
