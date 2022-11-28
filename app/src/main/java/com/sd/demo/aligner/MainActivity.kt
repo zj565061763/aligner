@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.sd.demo.aligner.databinding.ActivityMainBinding
 import com.sd.lib.aligner.Aligner
 import com.sd.lib.aligner.view.FViewAligner
-import com.sd.lib.aligner.view.ViewAligner
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val _binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -27,15 +26,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             this.target = _binding.viewTarget
 
             // 设置回调对象
-            this.callback = object : ViewAligner.ViewCallback() {
-                override fun onUpdate(x: Int, y: Int, source: Aligner.SourceLayoutInfo, target: Aligner.LayoutInfo) {
-                    logMsg { "($x, $y)" }
-                    source as ViewAligner.ViewLayoutInfo
-                    source.view!!.let { view ->
-                        view.layout(x, y, x + view.measuredWidth, y + view.measuredHeight)
-                    }
+            this.setCallback(object : Aligner.Callback {
+                override fun onResult(result: Aligner.Result) {
+                    val x = result.x
+                    val y = result.y
+
+                    logMsg { "(${x}, ${y})" }
+
+                    val view = _binding.viewSource
+                    view.layout(x, y, x + view.measuredWidth, y + view.measuredHeight)
                 }
-            }
+            })
         }
     }
 
@@ -60,17 +61,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
 
-            _binding.btnTopStart -> _aligner.position = Aligner.Position.TopStart
-            _binding.btnTopCenter -> _aligner.position = Aligner.Position.TopCenter
-            _binding.btnTopEnd -> _aligner.position = Aligner.Position.TopEnd
+            _binding.btnTopStart -> _aligner.setPosition(Aligner.Position.TopStart)
+            _binding.btnTopCenter -> _aligner.setPosition(Aligner.Position.TopCenter)
+            _binding.btnTopEnd -> _aligner.setPosition(Aligner.Position.TopEnd)
 
-            _binding.btnCenterStart -> _aligner.position = Aligner.Position.CenterStart
-            _binding.btnCenter -> _aligner.position = Aligner.Position.Center
-            _binding.btnCenterEnd -> _aligner.position = Aligner.Position.CenterEnd
+            _binding.btnCenterStart -> _aligner.setPosition(Aligner.Position.CenterStart)
+            _binding.btnCenter -> _aligner.setPosition(Aligner.Position.Center)
+            _binding.btnCenterEnd -> _aligner.setPosition(Aligner.Position.CenterEnd)
 
-            _binding.btnBottomStart -> _aligner.position = Aligner.Position.BottomStart
-            _binding.btnBottomCenter -> _aligner.position = Aligner.Position.BottomCenter
-            _binding.btnBottomEnd -> _aligner.position = Aligner.Position.BottomEnd
+            _binding.btnBottomStart -> _aligner.setPosition(Aligner.Position.BottomStart)
+            _binding.btnBottomCenter -> _aligner.setPosition(Aligner.Position.BottomCenter)
+            _binding.btnBottomEnd -> _aligner.setPosition(Aligner.Position.BottomEnd)
         }
     }
 }

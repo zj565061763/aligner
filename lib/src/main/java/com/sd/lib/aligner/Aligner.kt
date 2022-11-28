@@ -5,29 +5,54 @@ package com.sd.lib.aligner
  */
 interface Aligner {
     /**
-     * 回调对象
+     * 对齐的位置
      */
-    var callback: Callback?
-
-    /**
-     * 要对齐的位置，默认右上角对齐
-     */
-    var position: Position
-
-    /**
-     * 源信息
-     */
-    var sourceLayoutInfo: SourceLayoutInfo?
+    val position: Position
 
     /**
      * 目标信息
      */
-    var targetLayoutInfo: LayoutInfo?
+    val targetLayoutInfo: LayoutInfo
 
     /**
-     * 触发一次对齐，并返回是否成功
+     * 源信息
      */
-    fun update(): Boolean
+    val sourceLayoutInfo: LayoutInfo
+
+    /**
+     * 源容器的信息
+     */
+    val sourceContainerLayoutInfo: LayoutInfo
+
+    /**
+     * 设置回调对象
+     */
+    fun setCallback(callback: Callback?)
+
+    /**
+     * 设置要对齐的位置
+     */
+    fun setPosition(position: Position)
+
+    /**
+     * 设置目标信息
+     */
+    fun setTargetLayoutInfo(layoutInfo: LayoutInfo)
+
+    /**
+     * 设置源信息
+     */
+    fun setSourceLayoutInfo(layoutInfo: LayoutInfo)
+
+    /**
+     * 设置源容器信息
+     */
+    fun setSourceContainerLayoutInfo(layoutInfo: LayoutInfo)
+
+    /**
+     * 触发一次对齐，并返回结果
+     */
+    fun update(): Result?
 
     enum class Position {
         /** 顶部开始对齐 */
@@ -70,37 +95,27 @@ interface Aligner {
 
         companion object {
             val coordinateUnspecified = intArrayOf(Int.MAX_VALUE, Int.MIN_VALUE)
+            val Unspecified = object : LayoutInfo {
+                override val isReady: Boolean get() = false
+                override val width: Int get() = 0
+                override val height: Int get() = 0
+                override val coordinate: IntArray get() = coordinateUnspecified
+            }
         }
     }
 
-    /**
-     * 源信息
-     */
-    interface SourceLayoutInfo : LayoutInfo {
-        /** 源的父容器信息 */
-        val parentLayoutInfo: LayoutInfo?
-    }
+    data class Result(
+        /** 源相对于源容器的x值 */
+        val x: Int,
 
-    abstract class Callback {
-        /**
-         * [Aligner.update]后触发，返回是否可以更新
-         *
-         * @param source 源
-         * @param target 目标
-         * @return true-可以更新，false-不要更新
-         */
-        open fun canUpdate(source: SourceLayoutInfo, target: LayoutInfo): Boolean {
-            return true
-        }
+        /** 源现对于源容器的y值 */
+        val y: Int,
+    )
 
+    interface Callback {
         /**
-         * 根据[Position]计算后触发。
-         *
-         * @param x      [source]相对于父容器的[x]值
-         * @param y      [source]相对于父容器的[y]值
-         * @param source 源
-         * @param target 目标
+         * 结果回调
          */
-        abstract fun onUpdate(x: Int, y: Int, source: SourceLayoutInfo, target: LayoutInfo)
+        fun onResult(result: Result)
     }
 }
