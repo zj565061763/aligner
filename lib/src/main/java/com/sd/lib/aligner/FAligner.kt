@@ -45,6 +45,12 @@ open class FAligner : Aligner {
     }
 
     override fun update(): Result? {
+        return updateInternal().also {
+            _callback?.onResult(it)
+        }
+    }
+
+    private fun updateInternal(): Result? {
         val target = targetLayoutInfo
         val source = sourceLayoutInfo
         val sourceContainer = sourceContainerLayoutInfo
@@ -111,9 +117,7 @@ open class FAligner : Aligner {
             }
         }
 
-        return Result(x, y).also {
-            _callback?.onResult(it)
-        }
+        return Result(x, y)
     }
 
     private fun getXAlignStart(): Int {

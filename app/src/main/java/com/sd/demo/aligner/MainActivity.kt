@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             // 设置回调对象
             this.setCallback(object : Aligner.Callback {
-                override fun onResult(result: Aligner.Result) {
+                override fun onResult(result: Aligner.Result?) {
+                    if (result == null) return
+
                     val x = result.x
                     val y = result.y
 

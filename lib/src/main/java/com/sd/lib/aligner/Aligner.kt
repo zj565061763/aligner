@@ -119,6 +119,6 @@ interface Aligner {
         /**
          * 结果回调
          */
-        fun onResult(result: Result)
+        fun onResult(result: Result?)
     }
 }
