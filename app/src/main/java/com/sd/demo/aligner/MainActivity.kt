@@ -28,9 +28,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             // 设置回调对象
             this.setCallback(object : Aligner.Callback {
                 override fun onResult(result: Aligner.Result?) {
-                    if (result != null) {
-                        handleResult(result)
-                    }
+                    handleResult(result)
                 }
             })
         }
@@ -41,7 +39,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         true
     }
 
-    private fun handleResult(result: Aligner.Result) {
+    private fun handleResult(result: Aligner.Result?) {
+        if (result == null) return
+
         val x = result.x
         val y = result.y
 
