@@ -65,9 +65,9 @@ open class FAligner : Aligner {
             Position.TopCenter -> layoutTopCenter(source, target)
             Position.TopRight -> layoutTopRight(source, target)
 
-            Position.CenterLeft -> layoutLeftCenter(source, target)
+            Position.CenterLeft -> layoutCenterLeft(source, target)
             Position.Center -> layoutCenter(source, target)
-            Position.CenterRight -> layoutRightCenter(source, target)
+            Position.CenterRight -> layoutCenterRight(source, target)
 
             Position.BottomLeft -> layoutBottomLeft(source, target)
             Position.BottomCenter -> layoutBottomCenter(source, target)
@@ -95,7 +95,7 @@ open class FAligner : Aligner {
         _y = getYAlignTop()
     }
 
-    private fun layoutLeftCenter(source: LayoutInfo, target: LayoutInfo) {
+    private fun layoutCenterLeft(source: LayoutInfo, target: LayoutInfo) {
         _x = getXAlignLeft()
         _y = getYAlignCenter(source, target)
     }
@@ -105,7 +105,7 @@ open class FAligner : Aligner {
         _y = getYAlignCenter(source, target)
     }
 
-    private fun layoutRightCenter(source: LayoutInfo, target: LayoutInfo) {
+    private fun layoutCenterRight(source: LayoutInfo, target: LayoutInfo) {
         _x = getXAlignRight(source, target)
         _y = getYAlignCenter(source, target)
     }
