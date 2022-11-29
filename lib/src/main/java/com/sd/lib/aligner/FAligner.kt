@@ -3,148 +3,87 @@ package com.sd.lib.aligner
 import com.sd.lib.aligner.Aligner.*
 
 open class FAligner : Aligner {
-    private val _coordinateTarget = IntArray(2)
-    private val _coordinateSourceContainer = IntArray(2)
-
     private var _position = Position.TopEnd
-    private var _callback: Callback? = null
-
-    private var _targetLayoutInfo = LayoutInfo.Unspecified
-    private var _sourceLayoutInfo = LayoutInfo.Unspecified
-    private var _sourceContainerLayoutInfo = LayoutInfo.Unspecified
 
     override val position: Position get() = _position
-    override val targetLayoutInfo: LayoutInfo get() = _targetLayoutInfo
-    override val sourceLayoutInfo: LayoutInfo get() = _sourceLayoutInfo
-    override val sourceContainerLayoutInfo: LayoutInfo get() = _sourceContainerLayoutInfo
-
-    override fun setCallback(callback: Callback?) {
-        _callback = callback
-    }
 
     override fun setPosition(position: Position) {
-        if (_position != position) {
-            _position = position
-            if (_callback != null) update()
-        }
+        _position = position
     }
 
-    override fun setTargetLayoutInfo(layoutInfo: LayoutInfo) {
-        _targetLayoutInfo = layoutInfo
-        if (_callback != null) update()
+    override fun align(input: Input): Result {
+        return alignInternal(input)
     }
 
-    override fun setSourceLayoutInfo(layoutInfo: LayoutInfo) {
-        _sourceLayoutInfo = layoutInfo
-        if (_callback != null) update()
-    }
-
-    override fun setSourceContainerLayoutInfo(layoutInfo: LayoutInfo) {
-        _sourceContainerLayoutInfo = layoutInfo
-        if (_callback != null) update()
-    }
-
-    override fun update(): Result? {
-        return updateInternal().also {
-            _callback?.onResult(it)
-        }
-    }
-
-    private fun updateInternal(): Result? {
-        val target = targetLayoutInfo
-        val source = sourceLayoutInfo
-        val sourceContainer = sourceContainerLayoutInfo
-
-        if (_callback?.canUpdate() == false) {
-            return null
-        }
-
-        // check isReady
-        if (!target.isReady) return null
-        if (!source.isReady) return null
-        if (!sourceContainer.isReady) return null
-
-        // check coordinate
-        val coordinateTarget = target.coordinate
-        if (coordinateTarget === LayoutInfo.CoordinateUnspecified) return null
-
-        val coordinateSourceContainer = sourceContainer.coordinate
-        if (coordinateSourceContainer === LayoutInfo.CoordinateUnspecified) return null
-
-        _coordinateTarget[0] = coordinateTarget[0]
-        _coordinateTarget[1] = coordinateTarget[1]
-
-        _coordinateSourceContainer[0] = coordinateSourceContainer[0]
-        _coordinateSourceContainer[1] = coordinateSourceContainer[1]
-
+    private fun alignInternal(input: Input): Result {
         var x = 0
         var y = 0
 
         when (position) {
             Position.TopStart -> {
-                x = getXAlignStart()
-                y = getYAlignTop()
+                x = getXAlignStart(input)
+                y = getYAlignTop(input)
             }
             Position.TopCenter -> {
-                x = getXAlignCenter(source, target)
-                y = getYAlignTop()
+                x = getXAlignCenter(input)
+                y = getYAlignTop(input)
             }
             Position.TopEnd -> {
-                x = getXAlignEnd(source, target)
-                y = getYAlignTop()
+                x = getXAlignEnd(input)
+                y = getYAlignTop(input)
             }
 
             Position.CenterStart -> {
-                x = getXAlignStart()
-                y = getYAlignCenter(source, target)
+                x = getXAlignStart(input)
+                y = getYAlignCenter(input)
             }
             Position.Center -> {
-                x = getXAlignCenter(source, target)
-                y = getYAlignCenter(source, target)
+                x = getXAlignCenter(input)
+                y = getYAlignCenter(input)
             }
             Position.CenterEnd -> {
-                x = getXAlignEnd(source, target)
-                y = getYAlignCenter(source, target)
+                x = getXAlignEnd(input)
+                y = getYAlignCenter(input)
             }
 
             Position.BottomStart -> {
-                x = getXAlignStart()
-                y = getYAlignBottom(source, target)
+                x = getXAlignStart(input)
+                y = getYAlignBottom(input)
             }
             Position.BottomCenter -> {
-                x = getXAlignCenter(source, target)
-                y = getYAlignBottom(source, target)
+                x = getXAlignCenter(input)
+                y = getYAlignBottom(input)
             }
             Position.BottomEnd -> {
-                x = getXAlignEnd(source, target)
-                y = getYAlignBottom(source, target)
+                x = getXAlignEnd(input)
+                y = getYAlignBottom(input)
             }
         }
 
-        return Result(x, y)
+        return Result(input, x, y)
     }
 
-    private fun getXAlignStart(): Int {
-        return _coordinateTarget[0] - _coordinateSourceContainer[0]
+    private fun getXAlignStart(input: Input): Int {
+        return input.targetX - input.sourceContainerX
     }
 
-    private fun getXAlignEnd(source: LayoutInfo, target: LayoutInfo): Int {
-        return getXAlignStart() + (target.width - source.width)
+    private fun getXAlignEnd(input: Input): Int {
+        return getXAlignStart(input) + (input.targetWidth - input.sourceWidth)
     }
 
-    private fun getXAlignCenter(source: LayoutInfo, target: LayoutInfo): Int {
-        return getXAlignStart() + (target.width - source.width) / 2
+    private fun getXAlignCenter(input: Input): Int {
+        return getXAlignStart(input) + (input.targetWidth - input.sourceWidth) / 2
     }
 
-    private fun getYAlignTop(): Int {
-        return _coordinateTarget[1] - _coordinateSourceContainer[1]
+    private fun getYAlignTop(input: Input): Int {
+        return input.targetY - input.sourceContainerY
     }
 
-    private fun getYAlignBottom(source: LayoutInfo, target: LayoutInfo): Int {
-        return getYAlignTop() + (target.height - source.height)
+    private fun getYAlignBottom(input: Input): Int {
+        return getYAlignTop(input) + (input.targetHeight - input.sourceHeight)
     }
 
-    private fun getYAlignCenter(source: LayoutInfo, target: LayoutInfo): Int {
-        return getYAlignTop() + (target.height - source.height) / 2
+    private fun getYAlignCenter(input: Input): Int {
+        return getYAlignTop(input) + (input.targetHeight - input.sourceHeight) / 2
     }
 }

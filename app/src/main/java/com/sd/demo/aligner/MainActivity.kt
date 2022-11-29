@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.sd.demo.aligner.databinding.ActivityMainBinding
 import com.sd.lib.aligner.Aligner
 import com.sd.lib.aligner.view.FViewAligner
+import com.sd.lib.aligner.view.ViewAligner
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val _binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -19,14 +20,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val _aligner by lazy {
         FViewAligner().apply {
-            // 设置源View
-            this.source = _binding.viewSource
-
             // 设置目标View
-            this.target = _binding.viewTarget
+            setTarget(_binding.viewTarget)
+
+            // 设置源View
+            setSource(_binding.viewSource)
 
             // 设置回调对象
-            this.setCallback(object : Aligner.Callback {
+            setCallback(object : ViewAligner.Callback {
                 override fun onResult(result: Aligner.Result?) {
                     handleResult(result)
                 }

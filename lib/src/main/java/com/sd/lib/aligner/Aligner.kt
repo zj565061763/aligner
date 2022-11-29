@@ -10,49 +10,14 @@ interface Aligner {
     val position: Position
 
     /**
-     * 目标信息
-     */
-    val targetLayoutInfo: LayoutInfo
-
-    /**
-     * 源信息
-     */
-    val sourceLayoutInfo: LayoutInfo
-
-    /**
-     * 源容器信息
-     */
-    val sourceContainerLayoutInfo: LayoutInfo
-
-    /**
-     * 设置回调对象
-     */
-    fun setCallback(callback: Callback?)
-
-    /**
      * 设置要对齐的位置
      */
     fun setPosition(position: Position)
 
     /**
-     * 设置目标信息
-     */
-    fun setTargetLayoutInfo(layoutInfo: LayoutInfo)
-
-    /**
-     * 设置源信息
-     */
-    fun setSourceLayoutInfo(layoutInfo: LayoutInfo)
-
-    /**
-     * 设置源容器信息
-     */
-    fun setSourceContainerLayoutInfo(layoutInfo: LayoutInfo)
-
-    /**
      * 触发一次对齐，并返回结果
      */
-    fun update(): Result?
+    fun align(input: Input): Result
 
     enum class Position {
         /** 顶部开始对齐 */
@@ -77,57 +42,25 @@ interface Aligner {
         BottomEnd,
     }
 
-    /**
-     * 宽，高，大小等信息
-     */
-    interface LayoutInfo {
-        /** 是否已经准备好 */
-        val isReady: Boolean
-
-        /** 宽度 */
-        val width: Int
-
-        /** 高度 */
-        val height: Int
-
-        /** 坐标 */
-        val coordinate: IntArray
-
-        companion object {
-            /** 无效坐标 */
-            val CoordinateUnspecified = intArrayOf(Int.MAX_VALUE, Int.MIN_VALUE)
-
-            /** 无效信息 */
-            val Unspecified = object : LayoutInfo {
-                override val isReady: Boolean get() = false
-                override val width: Int get() = 0
-                override val height: Int get() = 0
-                override val coordinate: IntArray get() = CoordinateUnspecified
-            }
-        }
-    }
+    data class Input(
+        val targetX: Int,
+        val targetY: Int,
+        val sourceContainerX: Int,
+        val sourceContainerY: Int,
+        val targetWidth: Int,
+        val targetHeight: Int,
+        val sourceWidth: Int,
+        val sourceHeight: Int,
+    )
 
     data class Result(
+        /** 输入参数 */
+        val input: Input,
+
         /** 源相对于源容器的x值 */
         val x: Int,
 
         /** 源相对于源容器的y值 */
         val y: Int,
     )
-
-    interface Callback {
-        /**
-         * 在[Aligner.update]之前触发，可以做一些初始化操作。
-         *
-         * @return true-继续更新，false-跳过本次更新
-         */
-        fun canUpdate(): Boolean {
-            return true
-        }
-
-        /**
-         * 结果回调
-         */
-        fun onResult(result: Result?)
-    }
 }
