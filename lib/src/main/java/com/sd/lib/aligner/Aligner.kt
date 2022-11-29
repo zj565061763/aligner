@@ -72,5 +72,42 @@ interface Aligner {
 
         /** 源相对于源容器的y值 */
         val y: Int,
+    ) {
+        val overflow: Overflow
+            get() = with(input) {
+                val containerStart = containerX
+                val containerEnd = containerStart + containerWidth
+                val containerTop = containerY
+                val containerBottom = containerTop + containerHeight
+
+                val newStart = x
+                val start = if (newStart < containerStart) containerStart - newStart else 0
+
+                val newEnd = newStart + sourceWidth
+                val end = if (newEnd > containerEnd) newEnd - containerEnd else 0
+
+                val newTop = y
+                val top = if (newTop < containerTop) containerTop - newTop else 0
+
+                val newBottom = newTop + sourceHeight
+                val bottom = if (newBottom > containerBottom) newBottom - containerBottom else 0
+
+                Overflow(
+                    start = start,
+                    end = end,
+                    top = top,
+                    bottom = bottom,
+                )
+            }
+    }
+
+    /**
+     * 源的4个方向溢出源容器的信息
+     */
+    data class Overflow(
+        val start: Int,
+        val end: Int,
+        val top: Int,
+        val bottom: Int,
     )
 }
