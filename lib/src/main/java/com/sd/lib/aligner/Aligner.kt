@@ -110,5 +110,27 @@ interface Aligner {
         val end: Int,
         val top: Int,
         val bottom: Int,
-    )
+    ) {
+        /**
+         * 水平方向溢出的大小值
+         */
+        val horizontalOverflow: Int
+            get() {
+                var value = 0
+                if (start > 0) value += start
+                if (end > 0) value += end
+                return value
+            }
+
+        /**
+         * 竖直方向溢出的大小值
+         */
+        val verticalOverflow: Int
+            get() {
+                var value = 0
+                if (top > 0) value += top
+                if (bottom > 0) value += bottom
+                return value
+            }
+    }
 }
