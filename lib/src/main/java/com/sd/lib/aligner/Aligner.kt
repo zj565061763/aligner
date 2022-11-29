@@ -81,16 +81,16 @@ interface Aligner {
                 val containerBottom = containerTop + containerHeight
 
                 val newStart = x
-                val start = if (newStart < containerStart) containerStart - newStart else 0
+                val start = containerStart - newStart
 
                 val newEnd = newStart + sourceWidth
-                val end = if (newEnd > containerEnd) newEnd - containerEnd else 0
+                val end = newEnd - containerEnd
 
                 val newTop = y
-                val top = if (newTop < containerTop) containerTop - newTop else 0
+                val top = containerTop - newTop
 
                 val newBottom = newTop + sourceHeight
-                val bottom = if (newBottom > containerBottom) newBottom - containerBottom else 0
+                val bottom = newBottom - containerBottom
 
                 Overflow(
                     start = start,
@@ -102,7 +102,8 @@ interface Aligner {
     }
 
     /**
-     * 源的4个方向溢出源容器的信息
+     * 源的4个边溢出源容器的信息。
+     * 值大于0表示该边溢出了，值小于0表示该边未溢出。
      */
     data class Overflow(
         val start: Int,
