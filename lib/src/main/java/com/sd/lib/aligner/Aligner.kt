@@ -43,17 +43,24 @@ interface Aligner {
     }
 
     data class Input(
+        // 目标
         val targetX: Int,
         val targetY: Int,
-        val sourceContainerX: Int,
-        val sourceContainerY: Int,
+
+        // 源
+        val sourceX: Int,
+        val sourceY: Int,
+
+        // 源容器
+        val containerX: Int,
+        val containerY: Int,
 
         val targetWidth: Int,
         val targetHeight: Int,
         val sourceWidth: Int,
         val sourceHeight: Int,
-        val sourceContainerWidth: Int,
-        val sourceContainerHeight: Int,
+        val containerWidth: Int,
+        val containerHeight: Int,
     )
 
     data class Result(

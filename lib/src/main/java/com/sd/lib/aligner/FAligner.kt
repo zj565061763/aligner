@@ -64,7 +64,7 @@ open class FAligner : Aligner {
     }
 
     private fun getXAlignStart(input: Input): Int {
-        return input.targetX - input.sourceContainerX
+        return input.targetX - input.containerX
     }
 
     private fun getXAlignEnd(input: Input): Int {
@@ -76,7 +76,7 @@ open class FAligner : Aligner {
     }
 
     private fun getYAlignTop(input: Input): Int {
-        return input.targetY - input.sourceContainerY
+        return input.targetY - input.containerY
     }
 
     private fun getYAlignBottom(input: Input): Int {

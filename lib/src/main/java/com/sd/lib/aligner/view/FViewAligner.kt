@@ -10,7 +10,8 @@ import java.lang.ref.WeakReference
 
 open class FViewAligner : FAligner(), ViewAligner {
     private val _coordinateTarget = IntArray(2)
-    private val _coordinateSourceContainer = IntArray(2)
+    private val _coordinateSource = IntArray(2)
+    private val _coordinateContainer = IntArray(2)
 
     private var _targetRef: WeakReference<View>? = null
     private var _sourceRef: WeakReference<View>? = null
@@ -53,26 +54,34 @@ open class FViewAligner : FAligner(), ViewAligner {
     private fun updateInternal(): Result? {
         val target = target ?: return null
         val source = source ?: return null
-        val sourceContainer = source.parentView() ?: return null
+        val container = source.parentView() ?: return null
 
-        if (_callback?.canUpdate(target, source, sourceContainer) == false) {
+        if (_callback?.canUpdate(target, source, container) == false) {
             return null
         }
 
         target.getLocationOnScreen(_coordinateTarget)
-        sourceContainer.getLocationOnScreen(_coordinateSourceContainer)
+        source.getLocationOnScreen(_coordinateSource)
+        container.getLocationOnScreen(_coordinateContainer)
 
         val input = Aligner.Input(
             targetX = _coordinateTarget[0],
             targetY = _coordinateTarget[1],
-            sourceContainerX = _coordinateSourceContainer[0],
-            sourceContainerY = _coordinateSourceContainer[1],
+
+            sourceX = _coordinateSource[0],
+            sourceY = _coordinateSource[1],
+
+            containerX = _coordinateContainer[0],
+            containerY = _coordinateContainer[1],
+
             targetWidth = target.width,
             targetHeight = target.height,
+
             sourceWidth = source.width,
             sourceHeight = source.height,
-            sourceContainerWidth = sourceContainer.width,
-            sourceContainerHeight = sourceContainer.height,
+
+            containerWidth = container.width,
+            containerHeight = container.height,
         )
 
         return align(input)
