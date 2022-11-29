@@ -25,23 +25,23 @@ open class FAligner : Aligner {
     override fun setPosition(position: Position) {
         if (_position != position) {
             _position = position
-            update()
+            if (_callback != null) update()
         }
     }
 
     override fun setTargetLayoutInfo(layoutInfo: LayoutInfo) {
         _targetLayoutInfo = layoutInfo
-        update()
+        if (_callback != null) update()
     }
 
     override fun setSourceLayoutInfo(layoutInfo: LayoutInfo) {
         _sourceLayoutInfo = layoutInfo
-        update()
+        if (_callback != null) update()
     }
 
     override fun setSourceContainerLayoutInfo(layoutInfo: LayoutInfo) {
         _sourceContainerLayoutInfo = layoutInfo
-        update()
+        if (_callback != null) update()
     }
 
     override fun update(): Result? {
