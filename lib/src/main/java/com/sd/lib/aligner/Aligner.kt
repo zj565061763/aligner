@@ -47,10 +47,13 @@ interface Aligner {
         val targetY: Int,
         val sourceContainerX: Int,
         val sourceContainerY: Int,
+
         val targetWidth: Int,
         val targetHeight: Int,
         val sourceWidth: Int,
         val sourceHeight: Int,
+        val sourceContainerWidth: Int,
+        val sourceContainerHeight: Int,
     )
 
     data class Result(

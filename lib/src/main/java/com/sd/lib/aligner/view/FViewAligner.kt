@@ -71,6 +71,8 @@ open class FViewAligner : FAligner(), ViewAligner {
             targetHeight = target.height,
             sourceWidth = source.width,
             sourceHeight = source.height,
+            sourceContainerWidth = sourceContainer.width,
+            sourceContainerHeight = sourceContainer.height,
         )
 
         return align(input)
