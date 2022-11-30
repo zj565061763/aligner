@@ -121,7 +121,7 @@ interface Aligner {
     }
 
     /**
-     * 4个方向距离源容器4条边的值。值大于0表示溢出，值小于0表示未溢出。
+     * 4条边距离源容器4条边的值。值大于0表示溢出，值小于0表示未溢出。
      */
     data class Overflow(
         val start: Int,
