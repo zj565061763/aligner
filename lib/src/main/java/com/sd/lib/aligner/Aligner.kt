@@ -73,7 +73,7 @@ interface Aligner {
         /** 源相对于源容器的y值 */
         val y: Int,
     ) {
-        val overflow: Overflow
+        val sourceOverflow: Overflow
             get() = with(input) {
                 val containerStart = containerX
                 val containerEnd = containerStart + containerWidth
@@ -102,8 +102,7 @@ interface Aligner {
     }
 
     /**
-     * 源的4个边溢出源容器的信息。
-     * 值大于0表示该边溢出了，值小于0表示该边未溢出。
+     * 4个方向距离源容器4条边的值。值大于0表示溢出，值小于0表示未溢出。
      */
     data class Overflow(
         val start: Int,
