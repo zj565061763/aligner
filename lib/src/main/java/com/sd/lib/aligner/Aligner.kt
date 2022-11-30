@@ -27,19 +27,29 @@ interface Aligner {
         /** 顶部结束对齐 */
         TopEnd,
 
-        /** 中间开始对齐 */
-        CenterStart,
-        /** 中间对齐 */
-        Center,
-        /** 中间结束对齐 */
-        CenterEnd,
-
         /** 底部开始对齐 */
         BottomStart,
         /** 底部中间对齐 */
         BottomCenter,
         /** 底部结束对齐 */
         BottomEnd,
+
+        /** 开始顶部对齐 */
+        StartTop,
+        /** 开始中间对齐 */
+        StartCenter,
+        /** 开始底部对齐 */
+        StartBottom,
+
+        /** 开始顶部对齐 */
+        EndTop,
+        /** 开始中间对齐 */
+        EndCenter,
+        /** 开始底部对齐 */
+        EndBottom,
+
+        /** 中间对齐 */
+        Center,
     }
 
     data class Input(

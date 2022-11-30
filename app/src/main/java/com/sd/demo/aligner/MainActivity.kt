@@ -74,13 +74,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             _binding.btnTopCenter -> _aligner.setPosition(Aligner.Position.TopCenter)
             _binding.btnTopEnd -> _aligner.setPosition(Aligner.Position.TopEnd)
 
-            _binding.btnCenterStart -> _aligner.setPosition(Aligner.Position.CenterStart)
-            _binding.btnCenter -> _aligner.setPosition(Aligner.Position.Center)
-            _binding.btnCenterEnd -> _aligner.setPosition(Aligner.Position.CenterEnd)
-
             _binding.btnBottomStart -> _aligner.setPosition(Aligner.Position.BottomStart)
             _binding.btnBottomCenter -> _aligner.setPosition(Aligner.Position.BottomCenter)
             _binding.btnBottomEnd -> _aligner.setPosition(Aligner.Position.BottomEnd)
+
+            _binding.btnStartTop -> _aligner.setPosition(Aligner.Position.StartTop)
+            _binding.btnStartCenter -> _aligner.setPosition(Aligner.Position.StartCenter)
+            _binding.btnStartBottom -> _aligner.setPosition(Aligner.Position.StartBottom)
+
+            _binding.btnEndTop -> _aligner.setPosition(Aligner.Position.EndTop)
+            _binding.btnEndCenter -> _aligner.setPosition(Aligner.Position.EndCenter)
+            _binding.btnEndBottom -> _aligner.setPosition(Aligner.Position.EndBottom)
+
+            _binding.btnCenter -> _aligner.setPosition(Aligner.Position.Center)
         }
     }
 }

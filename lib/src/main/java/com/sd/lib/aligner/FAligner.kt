@@ -22,41 +22,59 @@ open class FAligner : Aligner {
         when (position) {
             Position.TopStart -> {
                 x = getXAlignStart(input)
-                y = getYAlignTop(input)
+                y = getYAlignTop(input) - input.sourceHeight
             }
             Position.TopCenter -> {
                 x = getXAlignCenter(input)
-                y = getYAlignTop(input)
+                y = getYAlignTop(input) - input.sourceHeight
             }
             Position.TopEnd -> {
                 x = getXAlignEnd(input)
-                y = getYAlignTop(input)
-            }
-
-            Position.CenterStart -> {
-                x = getXAlignStart(input)
-                y = getYAlignCenter(input)
-            }
-            Position.Center -> {
-                x = getXAlignCenter(input)
-                y = getYAlignCenter(input)
-            }
-            Position.CenterEnd -> {
-                x = getXAlignEnd(input)
-                y = getYAlignCenter(input)
+                y = getYAlignTop(input) - input.sourceHeight
             }
 
             Position.BottomStart -> {
                 x = getXAlignStart(input)
-                y = getYAlignBottom(input)
+                y = getYAlignBottom(input) + input.sourceHeight
             }
             Position.BottomCenter -> {
                 x = getXAlignCenter(input)
-                y = getYAlignBottom(input)
+                y = getYAlignBottom(input) + input.sourceHeight
             }
             Position.BottomEnd -> {
                 x = getXAlignEnd(input)
+                y = getYAlignBottom(input) + input.sourceHeight
+            }
+
+            Position.StartTop -> {
+                x = getXAlignStart(input) - input.sourceWidth
+                y = getYAlignTop(input)
+            }
+            Position.StartCenter -> {
+                x = getXAlignStart(input) - input.sourceWidth
+                y = getYAlignCenter(input)
+            }
+            Position.StartBottom -> {
+                x = getXAlignStart(input) - input.sourceWidth
                 y = getYAlignBottom(input)
+            }
+
+            Position.EndTop -> {
+                x = getXAlignEnd(input) + input.sourceWidth
+                y = getYAlignTop(input)
+            }
+            Position.EndCenter -> {
+                x = getXAlignEnd(input) + input.sourceWidth
+                y = getYAlignCenter(input)
+            }
+            Position.EndBottom -> {
+                x = getXAlignEnd(input) + input.sourceWidth
+                y = getYAlignBottom(input)
+            }
+
+            Position.Center -> {
+                x = getXAlignCenter(input)
+                y = getYAlignCenter(input)
             }
         }
 
