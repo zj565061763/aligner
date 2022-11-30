@@ -21,29 +21,29 @@ open class FAligner : Aligner {
 
         when (position) {
             Position.TopStart -> {
-                x = getXAlignStart(input)
                 y = getYAlignTop(input) - input.sourceHeight
+                x = getXAlignStart(input)
             }
             Position.TopCenter -> {
-                x = getXAlignCenter(input)
                 y = getYAlignTop(input) - input.sourceHeight
+                x = getXAlignCenter(input)
             }
             Position.TopEnd -> {
-                x = getXAlignEnd(input)
                 y = getYAlignTop(input) - input.sourceHeight
+                x = getXAlignEnd(input)
             }
 
             Position.BottomStart -> {
-                x = getXAlignStart(input)
                 y = getYAlignBottom(input) + input.sourceHeight
+                x = getXAlignStart(input)
             }
             Position.BottomCenter -> {
-                x = getXAlignCenter(input)
                 y = getYAlignBottom(input) + input.sourceHeight
+                x = getXAlignCenter(input)
             }
             Position.BottomEnd -> {
-                x = getXAlignEnd(input)
                 y = getYAlignBottom(input) + input.sourceHeight
+                x = getXAlignEnd(input)
             }
 
             Position.StartTop -> {
