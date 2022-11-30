@@ -106,23 +106,16 @@ interface Aligner {
                 val containerTop = containerY
                 val containerBottom = containerTop + containerHeight
 
-                val newStart = x
-                val start = containerStart - newStart
-
-                val newEnd = newStart + sourceWidth
-                val end = newEnd - containerEnd
-
-                val newTop = y
-                val top = containerTop - newTop
-
-                val newBottom = newTop + sourceHeight
-                val bottom = newBottom - containerBottom
+                val start = targetX
+                val end = start + targetWidth
+                val top = targetY
+                val bottom = top + targetHeight
 
                 Overflow(
-                    start = start,
-                    end = end,
-                    top = top,
-                    bottom = bottom,
+                    start = containerStart - start,
+                    end = end - containerEnd,
+                    top = containerTop - top,
+                    bottom = bottom - containerBottom,
                 )
             }
     }
