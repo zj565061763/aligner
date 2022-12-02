@@ -13,10 +13,13 @@ open class FViewAligner : FAligner(), ViewAligner {
     private val _coordinateSource = IntArray(2)
     private val _coordinateContainer = IntArray(2)
 
+    private var _position = Position.Center
+
     private var _targetRef: WeakReference<View>? = null
     private var _sourceRef: WeakReference<View>? = null
     private var _callback: Callback? = null
 
+    override val position: Position get() = _position
     override val target: View? get() = _targetRef?.get()
     override val source: View? get() = _sourceRef?.get()
 
@@ -25,7 +28,7 @@ open class FViewAligner : FAligner(), ViewAligner {
     }
 
     override fun setPosition(position: Position) {
-        super.setPosition(position)
+        _position = position
         if (_callback != null) update()
     }
 
@@ -65,6 +68,8 @@ open class FViewAligner : FAligner(), ViewAligner {
         container.getLocationOnScreen(_coordinateContainer)
 
         val input = Aligner.Input(
+            position = _position,
+
             targetX = _coordinateTarget[0],
             targetY = _coordinateTarget[1],
 

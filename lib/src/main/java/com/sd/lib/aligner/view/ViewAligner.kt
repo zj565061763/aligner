@@ -6,6 +6,11 @@ import com.sd.lib.aligner.Aligner.Result
 
 interface ViewAligner : Aligner {
     /**
+     * 对齐的位置
+     */
+    val position: Aligner.Position
+
+    /**
      * 目标View
      */
     val target: View?
@@ -19,6 +24,11 @@ interface ViewAligner : Aligner {
      * 设置回调
      */
     fun setCallback(callback: Callback?)
+
+    /**
+     * 设置要对齐的位置
+     */
+    fun setPosition(position: Aligner.Position)
 
     /**
      * 设置目标View

@@ -5,16 +5,6 @@ package com.sd.lib.aligner
  */
 interface Aligner {
     /**
-     * 对齐的位置
-     */
-    val position: Position
-
-    /**
-     * 设置要对齐的位置
-     */
-    fun setPosition(position: Position)
-
-    /**
      * 触发一次对齐，并返回结果
      */
     fun align(input: Input): Result
@@ -53,22 +43,29 @@ interface Aligner {
     }
 
     data class Input(
-        // 目标
+        val position: Position,
+
+        // 目标坐标
         val targetX: Int,
         val targetY: Int,
 
-        // 源
+        // 源坐标
         val sourceX: Int,
         val sourceY: Int,
 
-        // 源容器
+        // 源容器坐标
         val containerX: Int,
         val containerY: Int,
 
+        // 目标大小
         val targetWidth: Int,
         val targetHeight: Int,
+
+        // 源大小
         val sourceWidth: Int,
         val sourceHeight: Int,
+
+        // 源容器大小
         val containerWidth: Int,
         val containerHeight: Int,
     )
@@ -138,27 +135,5 @@ interface Aligner {
         val end: Int,
         val top: Int,
         val bottom: Int,
-    ) {
-        /**
-         * 水平方向溢出的大小值
-         */
-        val horizontalOverflow: Int
-            get() {
-                var value = 0
-                if (start > 0) value += start
-                if (end > 0) value += end
-                return value
-            }
-
-        /**
-         * 竖直方向溢出的大小值
-         */
-        val verticalOverflow: Int
-            get() {
-                var value = 0
-                if (top > 0) value += top
-                if (bottom > 0) value += bottom
-                return value
-            }
-    }
+    )
 }

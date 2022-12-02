@@ -3,13 +3,6 @@ package com.sd.lib.aligner
 import com.sd.lib.aligner.Aligner.*
 
 open class FAligner : Aligner {
-    private var _position = Position.TopEnd
-
-    override val position: Position get() = _position
-
-    override fun setPosition(position: Position) {
-        _position = position
-    }
 
     override fun align(input: Input): Result {
         return alignInternal(input)
@@ -19,7 +12,7 @@ open class FAligner : Aligner {
         var x = 0
         var y = 0
 
-        when (position) {
+        when (input.position) {
             Position.TopStart -> {
                 y = getYAlignTop(input) - input.sourceHeight
                 x = getXAlignStart(input)
