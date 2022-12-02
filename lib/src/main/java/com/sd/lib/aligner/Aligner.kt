@@ -57,10 +57,6 @@ interface Aligner {
         val targetX: Int,
         val targetY: Int,
 
-        // 源坐标
-        val sourceX: Int,
-        val sourceY: Int,
-
         // 源容器坐标
         val containerX: Int,
         val containerY: Int,

@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val containerXY = IntArray(2)
 
         target.getLocationOnScreen(targetXY)
-        source.getLocationOnScreen(sourceXY)
         container.getLocationOnScreen(containerXY)
 
         val input = Aligner.Input(
@@ -43,9 +42,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             targetX = targetXY[0],
             targetY = targetXY[1],
-
-            sourceX = sourceXY[0],
-            sourceY = sourceXY[1],
 
             containerX = containerXY[0],
             containerY = containerXY[1],
