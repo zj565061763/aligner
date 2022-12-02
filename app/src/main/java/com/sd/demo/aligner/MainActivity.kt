@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v) {
-            _binding.btnStart -> {
+            _binding.btnStartListen -> {
                 // 开始
                 with(window.decorView.viewTreeObserver) {
                     removeOnPreDrawListener(_onPreDrawListener)
@@ -88,12 +88,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 update()
             }
-            _binding.btnStop -> {
+            _binding.btnStopListen -> {
                 // 停止
                 with(window.decorView.viewTreeObserver) {
                     removeOnPreDrawListener(_onPreDrawListener)
                 }
             }
+
 
             _binding.btnTopStart -> {
                 _position = Aligner.Position.TopStart
@@ -107,6 +108,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 _position = Aligner.Position.TopEnd
                 update()
             }
+            _binding.btnTop -> {
+                _position = Aligner.Position.Top
+                update()
+            }
+
 
             _binding.btnBottomStart -> {
                 _position = Aligner.Position.BottomStart
@@ -120,6 +126,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 _position = Aligner.Position.BottomEnd
                 update()
             }
+            _binding.btnBottom -> {
+                _position = Aligner.Position.Bottom
+                update()
+            }
+
 
             _binding.btnStartTop -> {
                 _position = Aligner.Position.StartTop
@@ -133,6 +144,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 _position = Aligner.Position.StartBottom
                 update()
             }
+            _binding.btnStart -> {
+                _position = Aligner.Position.Start
+                update()
+            }
+
 
             _binding.btnEndTop -> {
                 _position = Aligner.Position.EndTop
@@ -146,6 +162,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 _position = Aligner.Position.EndBottom
                 update()
             }
+            _binding.btnEnd -> {
+                _position = Aligner.Position.End
+                update()
+            }
+
 
             _binding.btnCenter -> {
                 _position = Aligner.Position.Center

@@ -99,6 +99,26 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btn_top"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Top"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/btn_bottom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Bottom"
+                    android:textAllCaps="false" />
+
+                <Button
                     android:id="@+id/btn_center"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -106,6 +126,26 @@
                     android:layout_weight="1"
                     android:onClick="onClick"
                     android:text="Center"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/btn_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Start"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/btn_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="End"
                     android:textAllCaps="false" />
 
             </LinearLayout>
@@ -194,7 +234,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_start"
+                    android:id="@+id/btn_start_listen"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
@@ -204,7 +244,7 @@
                     android:textAllCaps="false" />
 
                 <Button
-                    android:id="@+id/btn_stop"
+                    android:id="@+id/btn_stop_listen"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"

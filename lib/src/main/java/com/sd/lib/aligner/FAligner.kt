@@ -25,6 +25,10 @@ open class FAligner : Aligner {
                 y = getYAlignTop(input) - input.sourceHeight
                 x = getXAlignEnd(input)
             }
+            Position.Top -> {
+                y = getYAlignTop(input) - input.sourceHeight
+                x = 0
+            }
 
             Position.BottomStart -> {
                 y = getYAlignBottom(input) + input.sourceHeight
@@ -37,6 +41,10 @@ open class FAligner : Aligner {
             Position.BottomEnd -> {
                 y = getYAlignBottom(input) + input.sourceHeight
                 x = getXAlignEnd(input)
+            }
+            Position.Bottom -> {
+                y = getYAlignBottom(input) + input.sourceHeight
+                x = 0
             }
 
             Position.StartTop -> {
@@ -51,6 +59,10 @@ open class FAligner : Aligner {
                 x = getXAlignStart(input) - input.sourceWidth
                 y = getYAlignBottom(input)
             }
+            Position.Start -> {
+                x = getXAlignStart(input) - input.sourceWidth
+                y = 0
+            }
 
             Position.EndTop -> {
                 x = getXAlignEnd(input) + input.sourceWidth
@@ -63,6 +75,10 @@ open class FAligner : Aligner {
             Position.EndBottom -> {
                 x = getXAlignEnd(input) + input.sourceWidth
                 y = getYAlignBottom(input)
+            }
+            Position.End -> {
+                x = getXAlignEnd(input) + input.sourceWidth
+                y = 0
             }
 
             Position.Center -> {
