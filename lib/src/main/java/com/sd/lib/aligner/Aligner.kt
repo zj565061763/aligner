@@ -129,6 +129,32 @@ interface Aligner {
                     bottom = bottom - containerBottom,
                 )
             }
+
+        fun overflow(x: Int, y: Int, width: Int, height: Int): Overflow {
+            return with(input) {
+                val containerStart = containerX
+                val containerEnd = containerStart + containerWidth
+                val containerTop = containerY
+                val containerBottom = containerTop + containerHeight
+
+                val start = x
+                val end = start + width
+                val top = y
+                val bottom = top + height
+
+                val overflowStart = containerStart - start
+                val overflowEnd = end - containerEnd
+                val overflowTop = containerTop - top
+                val overflowBottom = bottom - containerBottom
+
+                Overflow(
+                    start = overflowStart,
+                    end = overflowEnd,
+                    top = overflowTop,
+                    bottom = overflowBottom,
+                )
+            }
+        }
     }
 
     /**
