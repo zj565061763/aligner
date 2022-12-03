@@ -88,48 +88,16 @@ interface Aligner {
          * 源相对于源容器的溢出信息
          */
         val sourceOverflow: Overflow
-            get() = with(input) {
-                val containerStart = containerX
-                val containerEnd = containerStart + containerWidth
-                val containerTop = containerY
-                val containerBottom = containerTop + containerHeight
-
-                val start = x
-                val end = start + sourceWidth
-                val top = y
-                val bottom = top + sourceHeight
-
-                Overflow(
-                    start = containerStart - start,
-                    end = end - containerEnd,
-                    top = containerTop - top,
-                    bottom = bottom - containerBottom,
-                )
-            }
+            get() = overflow(
+                x = this.x,
+                y = this.y,
+                width = input.sourceWidth,
+                height = input.sourceHeight,
+            )
 
         /**
-         * 目标相对于源容器的溢出信息
+         * 输入的参数相对于源容器的溢出信息
          */
-        val targetOverflow: Overflow
-            get() = with(input) {
-                val containerStart = containerX
-                val containerEnd = containerStart + containerWidth
-                val containerTop = containerY
-                val containerBottom = containerTop + containerHeight
-
-                val start = targetX
-                val end = start + targetWidth
-                val top = targetY
-                val bottom = top + targetHeight
-
-                Overflow(
-                    start = containerStart - start,
-                    end = end - containerEnd,
-                    top = containerTop - top,
-                    bottom = bottom - containerBottom,
-                )
-            }
-
         fun overflow(x: Int, y: Int, width: Int, height: Int): Overflow {
             return with(input) {
                 val containerStart = containerX
