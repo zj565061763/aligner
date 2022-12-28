@@ -99,29 +99,16 @@ interface Aligner {
          * 输入的参数相对于源容器的溢出信息
          */
         fun overflow(x: Int, y: Int, width: Int, height: Int): Overflow {
-            return with(input) {
-                val containerStart = containerX
-                val containerEnd = containerStart + containerWidth
-                val containerTop = containerY
-                val containerBottom = containerTop + containerHeight
-
-                val start = x
-                val end = start + width
-                val top = y
-                val bottom = top + height
-
-                val overflowStart = containerStart - start
-                val overflowEnd = end - containerEnd
-                val overflowTop = containerTop - top
-                val overflowBottom = bottom - containerBottom
-
-                Overflow(
-                    start = overflowStart,
-                    end = overflowEnd,
-                    top = overflowTop,
-                    bottom = overflowBottom,
-                )
-            }
+            return Companion.overflow(
+                parentX = input.containerX,
+                parentY = input.containerY,
+                parentWidth = input.containerWidth,
+                parentHeight = input.containerHeight,
+                childX = x,
+                childY = y,
+                childWidth = width,
+                childHeight = height,
+            )
         }
     }
 
@@ -134,4 +121,40 @@ interface Aligner {
         val top: Int,
         val bottom: Int,
     )
+
+    companion object {
+        @JvmStatic
+        fun overflow(
+            parentX: Int,
+            parentY: Int,
+            parentWidth: Int,
+            parentHeight: Int,
+            childX: Int,
+            childY: Int,
+            childWidth: Int,
+            childHeight: Int,
+        ): Overflow {
+            val containerStart = parentX
+            val containerEnd = containerStart + parentWidth
+            val containerTop = parentY
+            val containerBottom = containerTop + parentHeight
+
+            val start = childX
+            val end = start + childWidth
+            val top = childY
+            val bottom = top + childHeight
+
+            val overflowStart = containerStart - start
+            val overflowEnd = end - containerEnd
+            val overflowTop = containerTop - top
+            val overflowBottom = bottom - containerBottom
+
+            return Overflow(
+                start = overflowStart,
+                end = overflowEnd,
+                top = overflowTop,
+                bottom = overflowBottom,
+            )
+        }
+    }
 }
