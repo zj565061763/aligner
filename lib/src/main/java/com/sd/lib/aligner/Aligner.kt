@@ -57,21 +57,21 @@ interface Aligner {
         val targetX: Int,
         val targetY: Int,
 
-        // 源容器坐标
-        val containerX: Int,
-        val containerY: Int,
-
         // 目标大小
         val targetWidth: Int,
         val targetHeight: Int,
 
-        // 源大小
-        val sourceWidth: Int,
-        val sourceHeight: Int,
+        // 源容器坐标
+        val containerX: Int,
+        val containerY: Int,
 
         // 源容器大小
         val containerWidth: Int,
         val containerHeight: Int,
+
+        // 源大小
+        val sourceWidth: Int,
+        val sourceHeight: Int,
     )
 
     data class Result(
