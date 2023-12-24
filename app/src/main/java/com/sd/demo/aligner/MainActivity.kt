@@ -7,12 +7,11 @@ import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import com.sd.demo.aligner.databinding.ActivityMainBinding
 import com.sd.lib.aligner.Aligner
-import com.sd.lib.aligner.FAligner
+import com.sd.lib.aligner.toResult
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val _binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    private val _aligner = FAligner()
     private var _position = Aligner.Position.Center
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             sourceHeight = source.height,
         )
 
-        val result = _aligner.align(input)
+        val result = input.toResult()
         handleResult(result)
     }
 
