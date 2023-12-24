@@ -92,7 +92,12 @@ interface Aligner {
         /**
          * 输入的参数相对于源容器的溢出信息
          */
-        fun overflow(x: Int, y: Int, width: Int, height: Int): Overflow {
+        fun overflow(
+            x: Int,
+            y: Int,
+            width: Int,
+            height: Int,
+        ): Overflow {
             return Companion.overflow(
                 parentX = input.containerX,
                 parentY = input.containerY,
