@@ -140,26 +140,18 @@ interface Aligner {
             childWidth: Int,
             childHeight: Int,
         ): Overflow {
-            val containerStart = parentX
-            val containerEnd = containerStart + parentWidth
-            val containerTop = parentY
-            val containerBottom = containerTop + parentHeight
 
-            val start = childX
-            val end = start + childWidth
-            val top = childY
-            val bottom = top + childHeight
+            val parentEnd = parentX + parentWidth
+            val parentBottom = parentY + parentHeight
 
-            val overflowStart = containerStart - start
-            val overflowEnd = end - containerEnd
-            val overflowTop = containerTop - top
-            val overflowBottom = bottom - containerBottom
+            val childEnd = childX + childWidth
+            val childBottom = childY + childHeight
 
             return Overflow(
-                start = overflowStart,
-                end = overflowEnd,
-                top = overflowTop,
-                bottom = overflowBottom,
+                start = parentX - childX,
+                top = parentY - childY,
+                end = childEnd - parentEnd,
+                bottom = childBottom - parentBottom,
             )
         }
     }
