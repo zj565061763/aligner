@@ -120,7 +120,19 @@ interface Aligner {
         val end: Int,
         val top: Int,
         val bottom: Int,
-    )
+    ) {
+        /**
+         * 4条边溢出容器的总值
+         */
+        fun totalOverflow(): Int {
+            var size = 0
+            if (top > 0) size += top
+            if (bottom > 0) size += bottom
+            if (start > 0) size += start
+            if (end > 0) size += end
+            return size
+        }
+    }
 
     companion object {
         @JvmStatic
