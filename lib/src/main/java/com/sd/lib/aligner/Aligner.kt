@@ -49,21 +49,19 @@ interface Aligner {
     data class Input(
         val position: Position,
 
-        // 目标坐标
+        // 目标
         val targetX: Int,
         val targetY: Int,
-        // 目标大小
         val targetWidth: Int,
         val targetHeight: Int,
 
-        // 源容器坐标
+        // 源容器
         val containerX: Int,
         val containerY: Int,
-        // 源容器大小
         val containerWidth: Int,
         val containerHeight: Int,
 
-        // 源大小
+        // 源
         val sourceWidth: Int,
         val sourceHeight: Int,
     )
