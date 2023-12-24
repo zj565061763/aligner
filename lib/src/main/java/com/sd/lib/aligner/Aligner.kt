@@ -4,10 +4,6 @@ package com.sd.lib.aligner
  * 对齐接口
  */
 interface Aligner {
-    /**
-     * 触发一次对齐，并返回结果
-     */
-    fun align(input: Input): Result
 
     enum class Position {
         /** 顶部开始方向对齐 */
