@@ -56,7 +56,6 @@ interface Aligner {
         // 目标坐标
         val targetX: Int,
         val targetY: Int,
-
         // 目标大小
         val targetWidth: Int,
         val targetHeight: Int,
@@ -64,7 +63,6 @@ interface Aligner {
         // 源容器坐标
         val containerX: Int,
         val containerY: Int,
-
         // 源容器大小
         val containerWidth: Int,
         val containerHeight: Int,

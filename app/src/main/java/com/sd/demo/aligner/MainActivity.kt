@@ -42,18 +42,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             targetX = targetXY[0],
             targetY = targetXY[1],
-
-            containerX = containerXY[0],
-            containerY = containerXY[1],
-
             targetWidth = target.width,
             targetHeight = target.height,
 
-            sourceWidth = source.width,
-            sourceHeight = source.height,
-
+            containerX = containerXY[0],
+            containerY = containerXY[1],
             containerWidth = container.width,
             containerHeight = container.height,
+
+            sourceWidth = source.width,
+            sourceHeight = source.height,
         )
 
         val result = _aligner.align(input)
@@ -83,6 +81,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 update()
             }
+
             _binding.btnStopListen -> {
                 // 停止
                 with(window.decorView.viewTreeObserver) {
@@ -95,14 +94,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 _position = Aligner.Position.TopStart
                 update()
             }
+
             _binding.btnTopCenter -> {
                 _position = Aligner.Position.TopCenter
                 update()
             }
+
             _binding.btnTopEnd -> {
                 _position = Aligner.Position.TopEnd
                 update()
             }
+
             _binding.btnTop -> {
                 _position = Aligner.Position.Top
                 update()
@@ -113,14 +115,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 _position = Aligner.Position.BottomStart
                 update()
             }
+
             _binding.btnBottomCenter -> {
                 _position = Aligner.Position.BottomCenter
                 update()
             }
+
             _binding.btnBottomEnd -> {
                 _position = Aligner.Position.BottomEnd
                 update()
             }
+
             _binding.btnBottom -> {
                 _position = Aligner.Position.Bottom
                 update()
@@ -131,14 +136,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 _position = Aligner.Position.StartTop
                 update()
             }
+
             _binding.btnStartCenter -> {
                 _position = Aligner.Position.StartCenter
                 update()
             }
+
             _binding.btnStartBottom -> {
                 _position = Aligner.Position.StartBottom
                 update()
             }
+
             _binding.btnStart -> {
                 _position = Aligner.Position.Start
                 update()
@@ -149,14 +157,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 _position = Aligner.Position.EndTop
                 update()
             }
+
             _binding.btnEndCenter -> {
                 _position = Aligner.Position.EndCenter
                 update()
             }
+
             _binding.btnEndBottom -> {
                 _position = Aligner.Position.EndBottom
                 update()
             }
+
             _binding.btnEnd -> {
                 _position = Aligner.Position.End
                 update()
