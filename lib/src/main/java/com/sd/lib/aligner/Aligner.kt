@@ -88,11 +88,11 @@ interface Aligner {
          * 源相对于源容器的溢出信息
          */
         val sourceOverflow: Overflow
-            get() = overflow(
-                x = this.x,
-                y = this.y,
-                width = input.sourceWidth,
-                height = input.sourceHeight,
+            get() = Overflow(
+                start = -x,
+                end = (x + input.sourceWidth) - input.containerWidth,
+                top = -y,
+                bottom = (y + input.sourceHeight) - input.containerHeight,
             )
 
         /**
